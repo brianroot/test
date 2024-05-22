@@ -35,15 +35,47 @@ The folder "import/input" contains the raw data as provided by city agencies. Th
 
 - "import/input/LASAN/WPIMS Data - 201910010_20230217_ver2.xls" includes data provided by LASAN to HRW in response to our PRA request for all information about cleanings related to the unhoused population including CARE, CARE+, Operation Healthy Streets, Special Enforcement Cleaning Zones and other LAMC 41.18 enforcement.
 
+
+#### Housing Authority of the City of Los Angeles (HACLA)
+
+These files were provided to HRW by HACLA in response to our PRA request.
+
+
 #### “Frozen” subfolders
 Any sub-folders titled “../frozen” contain additional data, typically created by Human Rights Watch, used for processing or coding the original data. For example, “processing/frozen/offenses_recoded.csv” contains Human Rights Watch’s coding of the raw offense data provided by LAPD. 
 
-###Processing
+### Processing
 
 This folder contains the scripts in the “processing/src” folder and additional datafiles needed to process the data in the “processing/frozen” folder. There are separate processing scripts for data from each agency. Each processing script is annotated to describe what each code snippet is doing. Within the processing scripts, locations are joined with additional geographic data which was processed outside of the R code using various geocoding apis and functions in GIS software. Geocoded addresses and locations are brought into the processing scripts via the “frozen” folder.
 “processing_other” contains processing code for processing the LAHSA point-in-time unhoused count as well as census data for the overall city population.
 “tidy_census_processing” contains a script for downloading and cleaning data downloaded from the US Census Bureau and CPI inflation data.
+After running all of the processing scripts, the “processing/output” folder will be filled with processed data.
 
+### Geo-matching
+
+This folder contains scripts and data for joining the processed data (in “processing/output”) with geographic data that was generated outside of the R environment in GIS software. The script is in “geo_matching/src” and the datafiles are in “geo_matching/frozen”.  This code then outputs processed, geocoded and matched data into “geo_matching/output”. This is the data that is used by the descriptive analysis scripts.
 
 ### Analysis
+The repository includes all scripts for taking processed data and performing descriptive analyses. This code cannot be run unless the processing and geo_matching code is run first because it relies on data outputted by those functions. The following scripts are in “descriptives/src”:
 
+#### HACLA_descriptives
+This script takes in processed census data and input data from HACLA to analyze public housing in the city. 
+
+#### rent_burden
+
+This script queries the US Census Bureau api to download and analyze data on home renting, ownership and burden. You will need to have your census api key in your .R environment.
+
+
+#### Zillow
+This script analyses data downloaded from [Zillow]( https://www.zillow.com/research/data/) on housing prices in the city.
+
+- "import/input/LAPD/structured data/Arrest_Data_downloaded5_9_23.csv" and "import/input/LAPD/structured data/Arrest_Data_through2019_downloaded.csv" contain data on all LAPD arrests downloaded from the city open records [portal]( https://data.lacity.org/).
+
+- "import/input/LAPD/structured data/CRIMES WITH HOMELESS AS VICTIM_R.xlsx" is raw data provide in response to the PRA request regarding known offenses with an unhoused victim.
+
+-   "import/input/LAPD/structured data/Crime_Data_from_2020_to_Present.csv" and "import/input/LAPD/structured data/Crime_Data_from_2010_to_2019_20231107.csv" are LAPD datasets on reported crime downloaded from the city open records [portal]( https://data.lacity.org/).
+
+
+### Contact
+Please contact Brian Root at rootb@hrw.org or dilresearch@hrw.org with any questions.
+![image](https://github.com/brianroot/test/assets/6944960/54c3562c-95b3-4f49-89fe-c638acf7b19e)
