@@ -57,32 +57,43 @@ After running all of the processing scripts, the “processing/output” folder 
 
 ## Geo-matching
 
-This folder contains scripts and data for joining the processed data (in “processing/output”) with geographic data that was generated outside of the R environment in GIS software. The script is in “geo_matching/src” and the datafiles are in “geo_matching/frozen”.  This code then outputs processed, geocoded and matched data into “geo_matching/output”. This is the data that is used by the descriptive analysis scripts.
+This folder contains scripts and data for joining the processed data (in “processing/output”) with geographic data that was generated outside of the R environment in GIS software. The script is in “geo_matching/src” and the datafiles are in “geo_matching/frozen”.  This code then outputs processed, geocoded and matched data into “geo_matching/output”. This is the data that is used by the descriptive analysis scripts.  Because some agencies jitter their location data in order to maintain anonymity, all locations were matched if they were within a 250m radius of each other.
 
 
-### Analysis
-The repository includes all scripts for taking processed data and performing descriptive analyses. This code cannot be run unless the processing and geo_matching code is run first because it relies on data outputted by those functions. The following scripts are in “descriptives/src”:
+## Analysis
+The repository includes all scripts for taking processed data and performing descriptive analyses. This code cannot be run unless the processing and geo_matching code is run first because the scripts rely on data outputted by those functions. The following scripts are in “descriptives/src”:
+
+####  joined_descriptives
+This file includes the code for any analyses that required joining the datasets from different agencies based on date or location. This includes analyses in the report that describe what agencies did at a specific location (e.g. Echo Park, Naomi St encampment) 
+
+#### lapd_descriptives
+This script contains all code for analysis of LAPD data on arrests of both unhoused and housed people including rates of arrest and analysis of charges.
+
+#### lapd_use_of_force_descriptives
+This script contains all code for analysis of LAPD data on the use of force.
+
+#### lapd_unhoused_victims
+This script contains the code for analyzing LAPD crime data including crimes with unhoused victims.
+
+#### lasan_descriptives
+This code provides descriptive statistics of LASAN cleanings including amount of materials thrown away and bags taken to storage.
+
+#### lahsa_roomkey_descriptives
+This code provides descriptive statistics of LAHSA’s Project Roomkey program including hotel occupancy rates.
+
+#### lahsa_inside_safe
+This code provides both descriptive statistics of the data LAHSA provided on services related to the Inside Safe program. The file includes analyses that are included in the final report as well as exploratory analysis of the data which was not included.
 
 #### HACLA_descriptives
 This script takes in processed census data and input data from HACLA to analyze public housing in the city. 
 
 #### rent_burden
-
 This script queries the US Census Bureau api to download and analyze data on home renting, ownership and burden. You will need to have your census api key in your .R environment.
-
 
 #### Zillow
 This script analyses data downloaded from [Zillow]( https://www.zillow.com/research/data/) on housing prices in the city.
 
-- "import/input/LAPD/structured data/Arrest_Data_downloaded5_9_23.csv" and "import/input/LAPD/structured data/Arrest_Data_through2019_downloaded.csv" contain data on all LAPD arrests downloaded from the city open records [portal]( https://data.lacity.org/).
-
-- "import/input/LAPD/structured data/CRIMES WITH HOMELESS AS VICTIM_R.xlsx" is raw data provide in response to the PRA request regarding known offenses with an unhoused victim.
-
--   "import/input/LAPD/structured data/Crime_Data_from_2020_to_Present.csv" and "import/input/LAPD/structured data/Crime_Data_from_2010_to_2019_20231107.csv" are LAPD datasets on reported crime downloaded from the city open records [portal]( https://data.lacity.org/).
-
-
-
 
 ## Contact
 Please contact Brian Root at rootb@hrw.org or dilresearch@hrw.org with any questions.
-![image](https://github.com/brianroot/test/assets/6944960/aa69bff1-1f9b-4c19-8b8c-4b9b7de11bba)
+
